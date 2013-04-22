@@ -1,0 +1,64 @@
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
+"针对开发配置
+au FileType php,c,java,javascript,html,htm,smarty call SetOption()
+function! SetOption()
+	set expandtab    " 使用空格代替tab
+	set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
+	set tabstop=4    " 用4个空格代替1个tab
+	set sts=4        " 设置softtabstop 为 4，输入tab后就跳了4格.
+	set cindent      " C语言方式缩进
+	set smartindent  " 智能缩进
+	set autoindent   " 自动缩进
+	set smarttab     " 只在行首用tab，其他地方的tab都用空格代替
+	set showmatch    "在输入括号时光标会短暂地跳到与之相匹配的括号处
+"	set fdm=indent " 代码折叠
+	set lbr
+	set tw=500
+	set wrap         " 自动换行
+endfunction
+
+"==== F3 NERDTree 切换
+map <F3> :NERDTreeToggle<CR>
+imap <F3> <ESC>:NERDTreeToggle<CR>
+let NERDTreeShowBookmarks=1
+
+"配色方案
+colorscheme desert
+
+if has('gui_running')
+    set nu
+endif
+
+"taglist
+map <F4> :Tlist<CR>
+imap <F4> :Tlist<CR>
+
+let Tlist_Show_One_File=1
+let Tlist_Use_Right_Window = 1
+let Tlist_Auto_Highlight_Tag = 1
+let Tlist_Auto_Open = 0
+let Tlist_Auto_Update = 1
+let Tlist_Close_On_Select = 0
+let Tlist_Compact_Format = 0
+let Tlist_Display_Prototype = 0
+let Tlist_Display_Tag_Scope = 1
+let Tlist_Enable_Fold_Column = 0
+let Tlist_Exit_OnlyWindow = 0
+let Tlist_File_Fold_Auto_Close = 0
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Hightlight_Tag_On_BufEnter = 1
+let Tlist_Inc_Winwidth = 0
+
+" php代码自动补全
+if !exists('g:AutoComplPop_Behavior')
+	let g:AutoComplPop_Behavior = {}
+	let g:AutoComplPop_Behavior['php'] = []
+	call add(g:AutoComplPop_Behavior['php'], {
+		\   'command'   : "\<C-x>\<C-o>", 
+		\   'pattern'   : printf('\(->\|::\|\$\)\k\{%d,}$', 0),
+		\   'repeat'    : 0,
+	\})
+endif
