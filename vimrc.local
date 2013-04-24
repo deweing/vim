@@ -3,7 +3,7 @@ syntax on
 filetype plugin indent on
 
 "针对开发配置
-au FileType php,c,java,javascript,html,htm,smarty call SetOption()
+au FileType php,c,java,javascript,html,htm,smarty,python call SetOption()
 function! SetOption()
 	set expandtab    " 使用空格代替tab
 	set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
