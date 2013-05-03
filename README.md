@@ -20,4 +20,6 @@ vim plugin
   cd ~/.vim   
   git submodule init  
   git submodule update  
- 
+  cat > ~/.vimrc <<END
+source ~/.vim/vimrc.local 
+END
